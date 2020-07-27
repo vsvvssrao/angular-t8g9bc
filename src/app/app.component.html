@@ -1,0 +1,38 @@
+    <div class="container">
+      <fieldset>
+        <legend>Read/Show</legend>
+        <p> Search :
+                  <input type="text" />
+        </p>
+        <br />
+        <table>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Family</th>
+              <th>Actions</th>
+            </tr>
+            <tr *ngFor="let user of users; let i = index">
+              <td>{{user.name}}</td>
+              <td>{{user.family}}</td>
+              <td>
+                <input (click)="delete(i)" type="button" value="Delete" />
+                <input (click)="setEditUser(i)" type="button" value="Edit" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <fieldset>
+        <legend>Add/Edit</legend>
+        <p>Name :
+                  <input [(ngModel)]="name" type="text" />
+        </p>
+        <p>Family :
+                  <input [(ngModel)]="family" type="text" />
+        </p>
+        <input [hidden]="editingIndex!==undefined" (click)="add()" type="button" value="Add"  />
+        <input [hidden]="editingIndex===undefined" (click)="edit()" type="button" value="update" />
+        <input (click)="cancel()" [hidden]="editingIndex===undefined" type="button" value="cancel"  />
+      </fieldset>
+    </div>
